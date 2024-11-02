@@ -1,5 +1,8 @@
 body {
-  background-color: rgb(240, 220, 240);
+  /* background-color: gray; */
+  background: url(clouds.jpg);
+  background-size: cover;
+  color: #ffffff;
   display: block;
   font-family: "Roboto", sans-serif;
 }
@@ -9,23 +12,30 @@ a {
 }
 
 .weather-app {
-  background: white;
+  background: #1e1e1e;
   max-width: 600px;
   margin: 60px auto;
   padding: 30px;
-  /* border-radius: 10px; */
-  box-shadow: 0 30px 50px rgba(166, 140, 226, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 header {
   border-bottom: 1px solid #f9f7fe;
   padding-bottom: 30px;
 }
 
 .search-input {
-  background-color: #f9f7fe;
+  background-color: #3a3a3a;
   border: none;
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
   padding: 20px;
   width: 75%;
@@ -66,7 +76,7 @@ main {
   margin: 0;
 }
 .current-details {
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -100,29 +110,42 @@ main {
 .weather-forecast {
   display: flex;
   margin: 15px;
+  align-items: center;
   justify-content: space-around;
 }
 
 .weather-forecast-date {
   text-align: center;
-  color: #f65282;
-  font-size: 14px;
-  line-height: 20px;
+  color: #b6e0f6;
+  font-size: 18px;
+  /* line-height: 20px; */
+  margin-top: 5px;
+}
+weather-forecast-day {
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-.weather-forecast-icon {
-  font-size: 32px;
-  text-align: center;
+.weather-forecast-day:hover {
+  transform: scale(1.1);
+}
+
+.weather-forecast-icon img {
+  /* font-size: 32px; */
+  /* text-align: center; */
+  width: 60px;
+  height: 60px;
 }
 .weather-focast-temperatures {
   text-align: center;
   color: red;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: flex;
   justify-content: center;
 }
 .weather-forecast-tempareture {
-  padding: 0 10px;
+  /* padding: 0 10px; */
+  margin: 2px 0;
 }
 
 footer {
@@ -130,5 +153,5 @@ footer {
   text-align: center;
   padding-top: 15px;
 
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(225, 225, 225, 0.6);
 }
