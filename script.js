@@ -2,15 +2,24 @@ function displayTemperature(response){
     let temperatureElement = document.querySelector("#current-temperature");
     let temperature = Math.round(response.data.temperature.current);
     temperatureElement.innerHTML = temperature;
-    let cityElement = document.querySelector("#current-city");
     
+    let cityElement = document.querySelector("#current-city");
     console.log(response.data);
     let descriptionElement = document.querySelector("#description");
-    
+    let humidityElement = document.querySelector("#humidity");
+    let windSpeedElement = document.querySelector("#wind_speed");
+    let currentDateELement = document.querySelector("#current-date");
+   
+    let date= new Date(response.data.time*1000);
+    let hours= date.getHours().toString().padStart(2,'0');
+    let minutes= date.getMinutes().toString().padStart(2,'0');
+    let formattedDate=formatDate(date);
+   
     cityElement.innerHTML=response.data.city;
     descriptionElement.innerHTML= response.data.condition.description;
-
-    
+    humidityElement.innerHTML= `${response.data.temperature.humidity}%`;
+    windSpeedElement.innerHTML= `${response.data.wind.speed}km/h`;
+    currentDateELement.innerHTML= `${formattedDate} ${hours}:${minutes}`;
 
 }
 function search(event) {
@@ -24,22 +33,14 @@ function search(event) {
   let apiUrl=`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`; 
 
   axios.get(apiUrl).then(displayTemperature);
-  cityElement.innerHTML = city;
+//   cityElement.innerHTML = city;
 }
 
 function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
+    
+//   let minutes = date.getMinutes();
+//   let hours = date.getHours();
   let day = date.getDay();
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-
   let days = [
     "Sunday",
     "Monday",
@@ -49,9 +50,10 @@ function formatDate(date) {
     "Friday",
     "Saturday"
   ];
-
   let formattedDay = days[day];
-  return `${formattedDay} ${hours}:${minutes}`;
+   
+  return formattedDay;
+
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -59,5 +61,6 @@ searchForm.addEventListener("submit", search);
 
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
-
-currentDateELement.innerHTML = formatDate(currentDate);
+let currentHours=currentDate.getHours.toString().padStart(2,'0');
+let currentMinutes=currentDate.getMinutes.toString().padStart(2,'0');
+currentDateELement.innerHTML = `${formatDate(currentDate)}, ${currentHours}:${currentMinutes}`;
