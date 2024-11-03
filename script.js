@@ -46,8 +46,7 @@ function formatDate(date) {
 
 function displayForecast(city) {
   let apiKey = "b2a5adcct04b33178913oc335f405433";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`; // Adjusted to use the forecast endpoint
-
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`; 
   axios.get(apiUrl).then(function (response) {
     let forecastHtml = "";
     let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -76,9 +75,8 @@ function displayForecast(city) {
   });
 }
 
-// Search form event listener
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-// Initial call to display forecast for a default city (e.g., Paris)
+
 displayForecast("Paris");
